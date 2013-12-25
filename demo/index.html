@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html class="no-js">
 
 <head>
 	
@@ -11,13 +11,76 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	
+	<style>
+		
+		ul.nutshell,
+		ul.nutshell li {
+			margin: 0;
+			padding: 0;
+		}
+		ul.nutshell {
+			font-family: Arial, sans-serif;
+			font-size: smaller;
+			margin: 10px 0;
+		}
+		ul.nutshell li {
+			list-style: none;
+			display: inline;
+		}
+		ul.nutshell li a {
+			padding: 5px 10px;
+			display: inline-block;
+			background: #eee;
+			color: #666;
+			text-decoration: none;
+		}
+		ul.nutshell li a.nutshell-selected {
+			background: #666;
+			color:#fff;
+		}
+		.js .nutshell-off { display: none; }
+		
+	</style>
+	
+	<script>
+		
+		;(function(window, document) {
+			
+			document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js');
+			
+		}(window, document));
+		
+	</script>
+	
 </head>
 <body>
 	
 	<h1><a href="https://github.com/mhulse/nutshell">Nutshell</a> demo</h1>
 	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<section>
+		
+		<h1>FOO &amp; BAR</h1>
+		
+		<ul class="nutshell">
+			<li><a href="#foo">FOO</a></li>
+			<li><a href="#bar">BAR</a></li>
+		</ul>
+		
+		<div id="foo">
+			
+			<p>FOO</p>
+			
+		</div>
+		
+		<div id="bar" class="nutshell-off">
+			
+			<p>BAR</p>
+			
+		</div>
+		
+	</section>
 	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="../nutshell/jquery.nutshell.min.js"></script>
 	
 	<script>

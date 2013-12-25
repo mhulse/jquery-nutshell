@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2013 Micky Hulse.
  * @license Released under the Apache License, Version 2.0.
  * @version 0.1.0
- * @date 2013/12/23
+ * @date 2013/12/25
  */
 
 //----------------------------------
@@ -64,9 +64,7 @@
 	
 	defaults = {
 		
-		foo : '',
-		bar : '',
-		// ... add more defaults here.
+		selected    : NS + '-selected',
 		
 		onInit      : $.noop, // Callback on plugin initialization; "this" is the context of the current element.
 		onAfterInit : $.noop  // Callback after plugin initialization; IBID.
@@ -236,6 +234,14 @@
 	_main = function(data) {
 		
 		//----------------------------------
+		// Hoist variables:
+		//----------------------------------
+		
+		var $links,   // Tab links.
+		    $active,  // Active tab.
+		    $content; // The tab's content.
+		
+		//----------------------------------
 		// Data?
 		//----------------------------------
 		
@@ -267,10 +273,78 @@
 			
 			data.settings.onInit.call(data.target);
 			
-			// Do stuff here ... For example:
+			//----------------------------------
+			// Get tab links:
+			//----------------------------------
 			
-			data.target
-				.css('color', 'red');
+			$links = $(this).find('a');
+			
+			//----------------------------------
+			// Get and set "active" link:
+			//----------------------------------
+			
+			$active = $($links.filter('[href="' + location.hash + '"]')[0] || $links[0]); // Activate `location.hash` or first tab.
+			$active.addClass(data.settings.selected); // Apply "active" class.
+			
+			//----------------------------------
+			// Hide inactive panels:
+			//----------------------------------
+			
+			$links.not($active).each(function() {
+				
+				$($(this).attr('href')).hide(); // Determined by anchor IDs.
+				
+			});
+			
+			//----------------------------------
+			// Get and show "active" panel:
+			//----------------------------------
+			
+			$content = $($active.attr('href'));
+			$content.show();
+			
+			//----------------------------------
+			// Tabs "click" event handler:
+			//----------------------------------
+			
+			$(this).on('click.' + NS, 'a', function(e) {
+				
+				//----------------------------------
+				// Prevent anchor's default action:
+				//----------------------------------
+				
+				e.preventDefault();
+				
+				//----------------------------------
+				// Already "active"?
+				//----------------------------------
+				
+				if ( ! $(e.target).hasClass(data.settings.selected)) {
+					
+					//----------------------------------
+					// New tab so deactivate/hide old:
+					//----------------------------------
+					
+					$active.removeClass(data.settings.selected);
+					$content.hide();
+					
+					//----------------------------------
+					// Activate the new tab:
+					//----------------------------------
+					
+					$active = $(this);
+					$active.addClass(data.settings.selected);
+					
+					//----------------------------------
+					// Show the new content:
+					//----------------------------------
+					
+					$content = $($(this).attr('href'));
+					$content.show();
+					
+				}
+				
+			});
 			
 			//----------------------------------
 			// Callback:
