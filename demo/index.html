@@ -13,6 +13,8 @@
 	
 	<style>
 		
+		body { padding: 10px 50px; }
+		
 		.nutshell { *zoom: 1; } .nutshell:before, .nutshell:after { content: " "; display: table; } .nutshell:after { clear: both; }
 		.nutshell,
 		.nutshell li {
@@ -47,19 +49,18 @@
 		.nutshell a:focus,
 		.nutshell a:focus:hover,
 		.nutshell a:hover,
-		.nutshell a:active {
-			text-decoration: none;
-		}
-		.nutshell a.nutshell-selected,
-		.nutshell a.nutshell-clicked {
+		.nutshell a:active { text-decoration: none; }
+		.nutshell a.nutshell-selected {
 			border-radius: 3px 3px 0 0;
 			border-color: #ccc;
 			background: #fff;
 		}
+		.nutshell a:active,
+		.nutshell a:focus { outline: none; }
 		
-		.nutshell-panel { padding: 10px; }
+		.nutshell-panel { padding: 10px 0; }
 		
-		.js .nutshell-off { display: none; }
+		.js .off { display: none; }
 		
 	</style>
 	
@@ -80,11 +81,12 @@
 	
 	<section>
 		
-		<h1>FOO &amp; BAR</h1>
+		<h1>FOO, BAR &amp; BAZ</h1>
 		
 		<ul class="nutshell">
 			<li><a href="#foo">FOO</a></li>
 			<li><a href="#bar">BAR</a></li>
+			<li><a href="#baz">BAZ</a></li>
 		</ul>
 		
 		<div id="foo" class="nutshell-panel">
@@ -93,13 +95,23 @@
 			
 		</div>
 		
-		<div id="bar" class="nutshell-panel nutshell-off">
+		<div id="bar" class="nutshell-panel off">
 			
 			<p>BAR</p>
 			
 		</div>
 		
+		<div id="baz" class="nutshell-panel off">
+			
+			<p>BAZ</p>
+			
+		</div>
+		
 	</section>
+	
+	<hr>
+	
+	<p>Text here.</p>
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="../nutshell/jquery.nutshell.min.js"></script>

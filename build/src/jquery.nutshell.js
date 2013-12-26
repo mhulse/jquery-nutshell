@@ -52,7 +52,6 @@
 	defaults = {
 		
 		selected    : NS + '-selected',
-		clicked     : NS + '-clicked',
 		animIn : { opacity: 'show' }, // What animation object to use to show the submenus.
 		animOut : { opacity: 'hide' }, // IBID, but for hiding.
 		easeIn : 'swing', // Easing function in.
@@ -158,8 +157,6 @@
 					//----------------------------------
 					
 					console.warn('jQuery.' + NS, 'thinks it\'s already initialized on', this);
-					
-					//return this; // Needed?
 					
 				}
 				
@@ -319,17 +316,6 @@
 				e.preventDefault();
 				
 				//----------------------------------
-				// Add "clicked" class:
-				//----------------------------------
-				
-				if ( ! $this.hasClass(data.settings.clicked)) {
-					
-					$links.removeClass(data.settings.clicked);
-					$this.addClass(data.settings.clicked);
-					
-				}
-				
-				//----------------------------------
 				// Already "active"?
 				//----------------------------------
 				
@@ -340,6 +326,13 @@
 					//----------------------------------
 					
 					$active.removeClass(data.settings.selected);
+					
+					//----------------------------------
+					// Activate the new tab:
+					//----------------------------------
+					
+					$active = $this;
+					$active.addClass(data.settings.selected);
 					
 					//----------------------------------
 					// Callback:
@@ -364,13 +357,6 @@
 								//----------------------------------
 								
 								data.settings.onHide.call(data.target, $(this));
-								
-								//----------------------------------
-								// Activate the new tab:
-								//----------------------------------
-								
-								$active = $this;
-								$active.addClass(data.settings.selected);
 								
 								//----------------------------------
 								// Get the new panel:
