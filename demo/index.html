@@ -58,7 +58,7 @@
 		.nutshell a:active,
 		.nutshell a:focus { outline: none; }
 		
-		.nutshell-panel { padding: 10px 0; }
+		.panel { padding: 10px 0; }
 		
 		.js .off { display: none; }
 		
@@ -89,19 +89,19 @@
 			<li><a href="#baz">BAZ</a></li>
 		</ul>
 		
-		<div id="foo" class="nutshell-panel">
+		<div id="foo" class="panel">
 			
 			<p>FOO</p>
 			
 		</div>
 		
-		<div id="bar" class="nutshell-panel off">
+		<div id="bar" class="panel off">
 			
 			<p>BAR</p>
 			
 		</div>
 		
-		<div id="baz" class="nutshell-panel off">
+		<div id="baz" class="panel off">
 			
 			<p>BAZ</p>
 			
@@ -121,10 +121,23 @@
 			
 			$(document).ready(function() {
 				
+				var console = (window.console || { log : function() {} });
+				
 				$('.nutshell').nutshell({
 					
-					onInit      : function() { console.log(this) },
-					onAfterInit : function() { console.log(this) }
+					classSelected : 'nutshell-selected',
+					animIn        : { opacity: 'show' },
+					animOut       : { opacity: 'hide' },
+					easeIn        : 'swing',
+					easeOut       : 'swing',
+					speedIn       : 'fast',
+					speedOut      : 'fast',
+					onInit        : function() { console.log('onInit', this) },
+					onAfterInit   : function() { console.log('onAfterInit', this) },
+					onBeforeShow  : function($active, $inactive, $panel) { console.log('onBeforeShow', this, $active, $inactive, $panel) },
+					onShow        : function($active, $inactive, $panel) { console.log('onShow', this, $active, $inactive, $panel) },
+					onBeforeHide  : function($active, $inactive, $panel) { console.log('onBeforeHide', this, $active, $inactive, $panel) },
+					onHide        : function($active, $inactive, $panel) { console.log('onHide', this, $active, $inactive, $panel) }
 					
 				});
 				

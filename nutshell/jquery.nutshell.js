@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2013 Micky Hulse.
  * @license Released under the Apache License, Version 2.0.
  * @version 0.1.0
- * @date 2013/12/25
+ * @date 2013/12/26
  */
 
 //----------------------------------
@@ -46,7 +46,7 @@
 	 * @see rgne.ws/12p2bvl
 	 */
 	
-	var console = window.console || { log : function() {}, warn : function() {} },
+	var console = (window.console || { log : function() {}, warn : function() {} }),
 	
 	//----------------------------------
 	
@@ -64,19 +64,19 @@
 	
 	defaults = {
 		
-		selected    : NS + '-selected',
-		animIn : { opacity: 'show' }, // What animation object to use to show the submenus.
-		animOut : { opacity: 'hide' }, // IBID, but for hiding.
-		easeIn : 'swing', // Easing function in.
-		easeOut : 'swing', // Easing function out.
-		speedIn : 'normal', // Animation speed in.
-		speedOut : 'normal', // Animation speed out.
-		onInit      : $.noop, // Callback on plugin initialization; "this" is the context of the current element.
-		onAfterInit : $.noop, // Callback after plugin initialization; IBID.
-		onBeforeShow : $.noop, // Before reveal animation begins.
-		onShow : $.noop, // After reveal animation ends.
-		onBeforeHide : $.noop, // Before hide animation begins.
-		onHide : $.noop // After hide animation ends.
+		classSelected : NS + '-selected',    // Selected class.
+		animIn        : { opacity: 'show' }, // What animation object to use to show the panels.
+		animOut       : { opacity: 'hide' }, // IBID, but for hiding.
+		easeIn        : 'swing',             // Easing function in.
+		easeOut       : 'swing',             // Easing function out.
+		speedIn       : 'normal',            // Animation speed in.
+		speedOut      : 'normal',            // Animation speed out.
+		onInit        : $.noop,              // Callback on plugin initialization.
+		onAfterInit   : $.noop,              // Callback after plugin initialization.
+		onBeforeShow  : $.noop,              // Before reveal animation begins.
+		onShow        : $.noop,              // After reveal animation ends.
+		onBeforeHide  : $.noop,              // Before hide animation begins.
+		onHide        : $.noop               // After hide animation ends.
 		
 	}, // defaults
 	
@@ -244,9 +244,10 @@
 		// Hoist variables:
 		//----------------------------------
 		
-		var $links,   // Tab links.
-		    $active,  // Active tab.
-		    $panel; // The tab's panel.
+		var $links,    // Tab links.
+		    $active,   // Active tab.
+		    $inactive, // Last active tab.
+		    $panel;    // The tab's panel.
 		
 		//----------------------------------
 		// Data?
@@ -291,7 +292,7 @@
 			//----------------------------------
 			
 			$active = $($links.filter('[href="' + location.hash + '"]')[0] || $links[0]); // Activate `location.hash` or first tab.
-			$active.addClass(data.settings.selected); // Apply "active" class.
+			$active.addClass(data.settings.classSelected); // Apply "active" class.
 			
 			//----------------------------------
 			// Hide inactive panels:
@@ -332,26 +333,32 @@
 				// Already "active"?
 				//----------------------------------
 				
-				if ( ! $this.hasClass(data.settings.selected)) {
+				if ( ! $this.hasClass(data.settings.classSelected)) {
 					
 					//----------------------------------
 					// New tab so deactivate/hide old:
 					//----------------------------------
 					
-					$active.removeClass(data.settings.selected);
+					$active.removeClass(data.settings.classSelected);
 					
 					//----------------------------------
-					// Activate the new tab:
+					// Cache active/inactive tabs:
 					//----------------------------------
 					
+					$inactive = $active;
 					$active = $this;
-					$active.addClass(data.settings.selected);
+					
+					//----------------------------------
+					// Apply the "selected" class:
+					//----------------------------------
+					
+					$active.addClass(data.settings.classSelected);
 					
 					//----------------------------------
 					// Callback:
 					//----------------------------------
 					
-					data.settings.onBeforeHide.call(data.target, $panel);
+					data.settings.onBeforeHide.call(data.target, $active, $inactive, $panel);
 					
 					//----------------------------------
 					// Hide the old panel:
@@ -369,7 +376,7 @@
 								// Callback:
 								//----------------------------------
 								
-								data.settings.onHide.call(data.target, $(this));
+								data.settings.onHide.call(data.target, $active, $inactive, $(this));
 								
 								//----------------------------------
 								// Get the new panel:
@@ -381,7 +388,7 @@
 								// Callback:
 								//----------------------------------
 								
-								data.settings.onBeforeShow.call(data.target, $panel);
+								data.settings.onBeforeShow.call(data.target, $active, $inactive, $panel);
 								
 								//----------------------------------
 								// Show the new panel:
@@ -399,7 +406,7 @@
 											// Callback:
 											//----------------------------------
 											
-											data.settings.onShow.call(data.target, $(this));
+											data.settings.onShow.call(data.target, $active, $inactive, $(this));
 											
 										}
 									);
