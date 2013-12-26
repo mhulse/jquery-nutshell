@@ -65,9 +65,19 @@
 	defaults = {
 		
 		selected    : NS + '-selected',
-		
+		clicked     : NS + '-clicked',
+		animIn : { opacity: 'show' }, // What animation object to use to show the submenus.
+		animOut : { opacity: 'hide' }, // IBID, but for hiding.
+		easeIn : 'swing', // Easing function in.
+		easeOut : 'swing', // Easing function out.
+		speedIn : 'normal', // Animation speed in.
+		speedOut : 'normal', // Animation speed out.
 		onInit      : $.noop, // Callback on plugin initialization; "this" is the context of the current element.
-		onAfterInit : $.noop  // Callback after plugin initialization; IBID.
+		onAfterInit : $.noop, // Callback after plugin initialization; IBID.
+		onBeforeShow : $.noop, // Before reveal animation begins.
+		onShow : $.noop, // After reveal animation ends.
+		onBeforeHide : $.noop, // Before hide animation begins.
+		onHide : $.noop // After hide animation ends.
 		
 	}, // defaults
 	
@@ -239,7 +249,7 @@
 		
 		var $links,   // Tab links.
 		    $active,  // Active tab.
-		    $content; // The tab's content.
+		    $panel; // The tab's panel.
 		
 		//----------------------------------
 		// Data?
@@ -300,8 +310,8 @@
 			// Get and show "active" panel:
 			//----------------------------------
 			
-			$content = $($active.attr('href'));
-			$content.show();
+			$panel = $($active.attr('href'));
+			$panel.show();
 			
 			//----------------------------------
 			// Tabs "click" event handler:
@@ -310,37 +320,106 @@
 			$(this).on('click.' + NS, 'a', function(e) {
 				
 				//----------------------------------
+				// Hoist variables:
+				//----------------------------------
+				
+				var $this = $(this);
+				
+				//----------------------------------
 				// Prevent anchor's default action:
 				//----------------------------------
 				
 				e.preventDefault();
 				
 				//----------------------------------
+				// Add "clicked" class:
+				//----------------------------------
+				
+				if ( ! $this.hasClass(data.settings.clicked)) {
+					
+					$links.removeClass(data.settings.clicked);
+					$this.addClass(data.settings.clicked);
+					
+				}
+				
+				//----------------------------------
 				// Already "active"?
 				//----------------------------------
 				
-				if ( ! $(e.target).hasClass(data.settings.selected)) {
+				if ( ! $this.hasClass(data.settings.selected)) {
 					
 					//----------------------------------
 					// New tab so deactivate/hide old:
 					//----------------------------------
 					
 					$active.removeClass(data.settings.selected);
-					$content.hide();
 					
 					//----------------------------------
-					// Activate the new tab:
+					// Callback:
 					//----------------------------------
 					
-					$active = $(this);
-					$active.addClass(data.settings.selected);
+					data.settings.onBeforeHide.call(data.target, $panel);
 					
 					//----------------------------------
-					// Show the new content:
+					// Hide the old panel:
 					//----------------------------------
 					
-					$content = $($(this).attr('href'));
-					$content.show();
+					$panel
+						.stop()
+						.animate(
+							data.settings.animOut,
+							data.settings.speedOut,
+							data.settings.easeOut,
+							function() {
+								
+								//----------------------------------
+								// Callback:
+								//----------------------------------
+								
+								data.settings.onHide.call(data.target, $(this));
+								
+								//----------------------------------
+								// Activate the new tab:
+								//----------------------------------
+								
+								$active = $this;
+								$active.addClass(data.settings.selected);
+								
+								//----------------------------------
+								// Get the new panel:
+								//----------------------------------
+								
+								$panel = $($this.attr('href'));
+								
+								//----------------------------------
+								// Callback:
+								//----------------------------------
+								
+								data.settings.onBeforeShow.call(data.target, $panel);
+								
+								//----------------------------------
+								// Show the new panel:
+								//----------------------------------
+								
+								$panel
+									.stop()
+									.animate(
+										data.settings.animIn,
+										data.settings.speedIn,
+										data.settings.easeIn,
+										function() {
+											
+											//----------------------------------
+											// Callback:
+											//----------------------------------
+											
+											data.settings.onShow.call(data.target, $(this));
+											
+										}
+									);
+								
+							}
+						);
 					
 				}
 				
