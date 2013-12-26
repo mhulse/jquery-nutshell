@@ -13,9 +13,27 @@
 	
 	<style>
 		
-		body { padding: 10px 50px; }
+		/*-----------------( DEMO ONLY )-----------------*/
 		
-		.nutshell { *zoom: 1; } .nutshell:before, .nutshell:after { content: " "; display: table; } .nutshell:after { clear: both; }
+		body { padding: 10px; }
+		
+		@media all and (min-width : 480px) {
+			
+			body { padding: 50px; }
+			
+		}
+		
+		body > h1 { text-align: center; }
+		
+		h1 { margin: 0 0 10px; }
+		
+		footer p {
+			text-align: right;
+			margin: 5px 0 0;
+		}
+		
+		/*-----------------( TAB SKIN )-----------------*/
+		
 		.nutshell,
 		.nutshell li {
 			margin: 0;
@@ -23,21 +41,12 @@
 		}
 		.nutshell {
 			position: relative;
-			border-bottom: 1px solid #ccc;
 			margin-bottom: 5px;
 		}
-		.nutshell li {
-			list-style: none;
-			float: left;
-			display: inline;
-			margin-right: 5px;
-			margin-bottom: -1px;
-		}
-		.nutshell li:last-child { margin-right: 0; }
+		.nutshell li { list-style: none; }
 		.nutshell a {
 			background: transparent;
 			border: 1px solid rgba(0, 0, 0, 0);
-			border-bottom: 0;
 			padding: 5px 10px;
 			display: block;
 		}
@@ -52,47 +61,72 @@
 		.nutshell a:hover,
 		.nutshell a:active { text-decoration: none; }
 		.nutshell a.nutshell-selected {
-			border-radius: 3px 3px 0 0;
+			border-radius: 3px;
 			border-color: #ccc;
 			background: #fff;
 		}
 		.nutshell a:active,
 		.nutshell a:focus { outline: none; }
 		
+		@media all and (min-width : 480px) {
+			
+			.nutshell { *zoom: 1; } .nutshell:before, .nutshell:after { content: " "; display: table; } .nutshell:after { clear: both; }
+			.nutshell { border-bottom: 1px solid #ccc; }
+			.nutshell li {
+				float: left;
+				display: inline;
+				margin-right: 5px;
+				margin-bottom: -1px;
+			}
+			.nutshell li:last-child { margin-right: 0; }
+			.nutshell a { border-bottom: 0; }
+			.nutshell a.nutshell-selected {
+				border-bottom-right-radius: 0;
+				border-bottom-left-radius: 0;
+				border-color: #ccc;
+				background: #fff;
+			}
+			
+		}
+		
+		/*-----------------( TAB PANEL )-----------------*/
+		
 		.panel {
 			border: 1px solid #ccc;
+			background: #fff;
 			padding: 10px;
+			border-radius: 0 0 3px 3px;
+			box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 		}
+		.panel > :last-child { margin-bottom: 0; }
+		
+		/*-----------------( UTILITY )-----------------*/
 		
 		.js .off { display: none; }
 		
 	</style>
 	
-	<script>
-		
-		;(function(window, document) {
-			
-			document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js');
-			
-		}(window, document));
-		
-	</script>
+	<script>/*! rgne.ws/WnP50T */;(function(a){a.className=a.className.replace(/\bno-js\b/,'js')}(document.documentElement));</script>
 	
 </head>
 <body>
 	
 	<h1><a href="https://github.com/mhulse/nutshell">Nutshell</a> demo</h1>
 	
+	<hr>
+	
 	<section>
 		
 		<h1>FOO, BAR &amp; BAZ</h1>
 		
 		<nav>
+			
 			<ul class="nutshell">
 				<li><a href="#foo">FOO</a></li>
 				<li><a href="#bar">BAR</a></li>
 				<li><a class="nutshell-selected" href="#baz">BAZ</a></li>
 			</ul>
+			
 		</nav>
 		
 		<section id="foo" class="panel off">
@@ -116,6 +150,8 @@
 			<h1>BAZ</h1>
 			
 			<p>The quick brown fox jumps over the lazy dog.</p>
+			
+			<hr>
 			
 			<section>
 				
@@ -157,9 +193,11 @@
 		
 	</section>
 	
-	<hr>
-	
-	<p>Why re-invent the wheel? Because I can. ;)</p>
+	<footer>
+		
+		<p><small>Why reinvent the wheel, you ask? Because I enjoy <a href="http://www.codinghorror.com/blog/2009/02/dont-reinvent-the-wheel-unless-you-plan-on-learning-more-about-wheels.html">learning more about wheels</a>. ;)</small></p>
+		
+	</footer>
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="../nutshell/jquery.nutshell.min.js"></script>
