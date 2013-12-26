@@ -24,6 +24,7 @@
 		.nutshell {
 			position: relative;
 			border-bottom: 1px solid #ccc;
+			margin-bottom: 5px;
 		}
 		.nutshell li {
 			list-style: none;
@@ -58,7 +59,10 @@
 		.nutshell a:active,
 		.nutshell a:focus { outline: none; }
 		
-		.panel { padding: 10px 0; }
+		.panel {
+			border: 1px solid #ccc;
+			padding: 10px;
+		}
 		
 		.js .off { display: none; }
 		
@@ -83,35 +87,79 @@
 		
 		<h1>FOO, BAR &amp; BAZ</h1>
 		
-		<ul class="nutshell">
-			<li><a href="#foo">FOO</a></li>
-			<li><a href="#bar">BAR</a></li>
-			<li><a href="#baz">BAZ</a></li>
-		</ul>
+		<nav>
+			<ul class="nutshell">
+				<li><a href="#foo">FOO</a></li>
+				<li><a href="#bar">BAR</a></li>
+				<li><a class="nutshell-selected" href="#baz">BAZ</a></li>
+			</ul>
+		</nav>
 		
-		<div id="foo" class="panel">
+		<section id="foo" class="panel off">
 			
-			<p>FOO</p>
+			<h1>FOO</h1>
 			
-		</div>
+			<p>The quick brown fox jumps over the lazy dog.</p>
+			
+		</section>
 		
-		<div id="bar" class="panel off">
+		<section id="bar" class="panel off">
 			
-			<p>BAR</p>
+			<h1>BAR</h1>
 			
-		</div>
+			<p>The quick brown fox jumps over the lazy dog.</p>
+			
+		</section>
 		
-		<div id="baz" class="panel off">
+		<section id="baz" class="panel">
 			
-			<p>BAZ</p>
+			<h1>BAZ</h1>
 			
-		</div>
+			<p>The quick brown fox jumps over the lazy dog.</p>
+			
+			<section>
+				
+				<h1>EEK, MOOF &amp; GLEEP</h1>
+				
+				<ul class="nutshell">
+					<li><a href="#eek">EEK</a></li>
+					<li><a href="#moof">MOOF</a></li>
+					<li><a href="#gleep">GLEEP</a></li>
+				</ul>
+				
+				<section id="eek" class="panel">
+					
+					<h1>EEK</h1>
+					
+					<p>The quick brown fox jumps over the lazy dog.</p>
+					
+				</section>
+				
+				<section id="moof" class="panel">
+					
+					<h1>MOOF</h1>
+					
+					<p>The quick brown fox jumps over the lazy dog.</p>
+					
+				</section>
+				
+				<section id="gleep" class="panel">
+					
+					<h1>GLEEP</h1>
+					
+					<p>The quick brown fox jumps over the lazy dog.</p>
+					
+				</section>
+				
+			</section>
+			
+		</section>
 		
 	</section>
 	
 	<hr>
 	
-	<p>Text here.</p>
+	<p>Why re-invent the wheel? Because I can. ;)</p>
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="../nutshell/jquery.nutshell.min.js"></script>

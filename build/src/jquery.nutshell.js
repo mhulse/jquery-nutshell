@@ -275,11 +275,16 @@
 			$links = $(this).find('a');
 			
 			//----------------------------------
-			// Get and set "active" link:
+			// Get "active" link:
 			//----------------------------------
 			
-			$active = $($links.filter('[href="' + location.hash + '"]')[0] || $links[0]); // Activate `location.hash` or first tab.
-			$active.addClass(data.settings.classSelected); // Apply "active" class.
+			$active = $($links.filter('[href="' + location.hash + '"]')[0] || $links.filter('.' + data.settings.classSelected)[0] || $links[0]); // Activate by `location.hash`, manually assignment or first tab.
+			
+			//----------------------------------
+			// Apply "active" class:
+			//----------------------------------
+			
+			$active.addClass(data.settings.classSelected);
 			
 			//----------------------------------
 			// Hide inactive panels:
