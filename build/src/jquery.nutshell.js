@@ -195,7 +195,7 @@
 				
 				if (data) {
 					
-					$this // -->
+					$this // ... hot chaining action -->
 					
 					//----------------------------------
 					// Namespaced instance data:
@@ -307,6 +307,12 @@
 			//----------------------------------
 			
 			$active = $($links.filter('[href="' + location.hash + '"]')[0] || $links.filter('.' + data.settings.classSelected)[0] || $links[0]); // Activate by `location.hash`, manually assignment or first tab.
+			
+			//----------------------------------
+			// Remove existing "active" class:
+			//----------------------------------
+			
+			$links.removeClass(data.settings.classSelected);
 			
 			//----------------------------------
 			// Apply "active" class:
