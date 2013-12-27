@@ -1,0 +1,15 @@
+{
+  "name": "nutshell",
+  "version": "1.0.0",
+  "main": [
+    "./nutshell/jquery.nutshell.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "**/*.md",
+    "build",
+    "demo"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}
