@@ -6,6 +6,16 @@
 
 ---
 
+## Installation
+
+There are several ways to install this code:
+
+1. Download as a [`zip`](https://github.com/mhulse/jquery-nutshell/archive/gh-pages.zip).
+1. Clone it: `$ git clone https://github.com/mhulse/jquery-nutshell.git`.
+1. Fork it and clone: `$ git clone git@github.com:USERNAME/jquery-nutshell.git`.
+1. Just grab the relevant [JS](https://raw.github.com/mhulse/jquery-nutshell/gh-pages/nutshell/jquery.nutshell.js) ([uglified](https://raw.github.com/mhulse/jquery-nutshell/gh-pages/nutshell/jquery.nutshell.min.js)) files.
+1. Using [Bower](http://bower.io/): `$ bower install https://github.com/mhulse/jquery-nutshell.git`.
+
 ## Usage
 
 Put [jQuery](http://jquery.com/) on your page:
