@@ -195,13 +195,41 @@
 				
 				if (data) {
 					
-					// Remove setups here.
+					$this // -->
 					
 					//----------------------------------
 					// Namespaced instance data:
 					//----------------------------------
 					
-					$this.removeData(NS); // Move along. Nothing to see here.
+					.removeData(NS) // -->
+					
+					//----------------------------------
+					// Tabs "click" event handler:
+					//----------------------------------
+					
+					.off('click.' + NS, 'a') // -->
+					
+					//----------------------------------
+					// Get tab links:
+					//----------------------------------
+					
+					.find('a') // -->
+					
+					//----------------------------------
+					// Remove "active" class:
+					//----------------------------------
+					
+					.removeClass(data.settings.classSelected) // -->
+					
+					//----------------------------------
+					// Hide inactive panels:
+					//----------------------------------
+					
+					.each(function() {
+						
+						$($(this).attr('href')).show(); // Determined by anchor IDs.
+						
+					}); // Done!
 					
 				}
 				
