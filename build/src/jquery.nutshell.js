@@ -51,7 +51,7 @@
 	
 	defaults = {
 		
-		classSelected : NS + '-selected',    // Selected class.
+		classSelected : NS + '-selected',    // Selected tab CSS class.
 		animIn        : { opacity: 'show' }, // What animation object to use to show the panels.
 		animOut       : { opacity: 'hide' }, // IBID, but for hiding.
 		easeIn        : 'swing',             // Easing function in.

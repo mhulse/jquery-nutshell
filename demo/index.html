@@ -203,35 +203,33 @@
 	<script src="../nutshell/jquery.nutshell.min.js"></script>
 	
 	<script>
-		<!--
+		
+		$(document).ready(function() {
 			
-			$(document).ready(function() {
+			var console = (window.console || { log : function() {} });
+			
+			$('.nutshell').nutshell({
 				
-				var console = (window.console || { log : function() {} });
-				
-				$('.nutshell').nutshell({
-					
-					classSelected : 'nutshell-selected',
-					animIn        : { opacity: 'show' },
-					animOut       : { opacity: 'hide' },
-					easeIn        : 'swing',
-					easeOut       : 'swing',
-					speedIn       : 'fast',
-					speedOut      : 'fast',
-					onInit        : function() { console.log('onInit', this) },
-					onAfterInit   : function() { console.log('onAfterInit', this) },
-					onBeforeShow  : function($active, $inactive, $panel) { console.log('onBeforeShow', this, $active, $inactive, $panel) },
-					onShow        : function($active, $inactive, $panel) { console.log('onShow', this, $active, $inactive, $panel) },
-					onBeforeHide  : function($active, $inactive, $panel) { console.log('onBeforeHide', this, $active, $inactive, $panel) },
-					onHide        : function($active, $inactive, $panel) { console.log('onHide', this, $active, $inactive, $panel) }
-					
-				});
-				
-				//$('.nutshell').nutshell('destroy');
+				classSelected : 'nutshell-selected',
+				animIn        : { opacity: 'show' },
+				animOut       : { opacity: 'hide' },
+				easeIn        : 'swing',
+				easeOut       : 'swing',
+				speedIn       : 'fast',
+				speedOut      : 'fast',
+				onInit        : function() { console.log('onInit', this) },
+				onAfterInit   : function() { console.log('onAfterInit', this) },
+				onBeforeShow  : function($active, $inactive, $panel) { console.log('onBeforeShow', this, $active, $inactive, $panel) },
+				onShow        : function($active, $inactive, $panel) { console.log('onShow', this, $active, $inactive, $panel) },
+				onBeforeHide  : function($active, $inactive, $panel) { console.log('onBeforeHide', this, $active, $inactive, $panel) },
+				onHide        : function($active, $inactive, $panel) { console.log('onHide', this, $active, $inactive, $panel) }
 				
 			});
 			
-		//-->
+			//$('.nutshell').nutshell('destroy');
+			
+		});
+		
 	</script>
 	
 </body>
