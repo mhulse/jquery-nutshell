@@ -18,13 +18,45 @@ There are several ways to install this code:
 
 ## Usage
 
+Setting up Nutshell is simple.
+
+### Markup:
+
+Here's the basic HTML:
+
+```html
+<section>
+	
+	<h1>...</h1>
+	
+	<ul class="nutshell">
+		<li><a href="#foo">Foo</a></li>
+		<li><a href="#bar">Bar</a></li>
+		<li><a href="#baz">Baz</a></li>
+	</ul>
+	
+	<section id="foo" class="panel">...</section>
+	
+	<section id="bar" class="panel">...</section>
+	
+	<section id="baz" class="panel">...</section>
+	
+</section>
+```
+
+### Styling:
+
+These tabs can be styled as you see fit. Check out the [demo page](http://mhulse.github.com/jquery-nutshell/demo/) for a complete working example.
+
+### Javascript:
+
 Put [jQuery](http://jquery.com/) on your page:
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 ```
 
-… and link to the plugin:
+... and link to the plugin:
 
 ```html
 <script src="jquery.nutshell.min.js"></script>
