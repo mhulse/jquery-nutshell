@@ -25,23 +25,17 @@ Setting up Nutshell is simple.
 Here's the basic HTML:
 
 ```html
-<section>
-	
-	<h1>...</h1>
-	
-	<ul class="nutshell">
-		<li><a href="#foo">Foo</a></li>
-		<li><a href="#bar">Bar</a></li>
-		<li><a href="#baz">Baz</a></li>
-	</ul>
-	
-	<section id="foo" class="panel">...</section>
-	
-	<section id="bar" class="panel">...</section>
-	
-	<section id="baz" class="panel">...</section>
-	
-</section>
+<ul class="nutshell">
+	<li><a href="#foo">Foo</a></li>
+	<li><a href="#bar">Bar</a></li>
+	<li><a href="#baz">Baz</a></li>
+</ul>
+
+<div id="foo">...</div>
+
+<div id="bar">...</div>
+
+<div id="baz">...</div>
 ```
 
 ### Styling:
