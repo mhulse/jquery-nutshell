@@ -52,6 +52,7 @@
 	defaults = {
 		
 		classSelected : NS + '-selected',    // Selected tab CSS class.
+		classSingle   : '',                  // Have "external" link(s) open a single tab based on its hash?
 		animIn        : { opacity: 'show' }, // What animation object to use to show the panels.
 		animOut       : { opacity: 'hide' }, // IBID, but for hiding.
 		easeIn        : 'swing',             // Easing function in.
@@ -116,7 +117,7 @@
 					// Initialize:
 					//----------------------------------
 					
-					settings = $.extend({}, defaults, options); // Merge defaults and options.
+					settings = $.extend(true, {}, defaults, options, $this.data(NS + 'Options')); // Recursively merge defaults, options and data attribute options.
 					
 					//----------------------------------
 					// Namespaced instance data:
@@ -204,16 +205,16 @@
 					.removeData(NS) // -->
 					
 					//----------------------------------
-					// Tabs "click" event handler:
-					//----------------------------------
-					
-					.off('click.' + NS, 'a') // -->
-					
-					//----------------------------------
 					// Get tab links:
 					//----------------------------------
 					
 					.find('a') // -->
+					
+					//----------------------------------
+					// Tabs "click" event handler:
+					//----------------------------------
+					
+					.off('click.' + NS) // -->
 					
 					//----------------------------------
 					// Remove "active" class:
@@ -227,9 +228,23 @@
 					
 					.each(function() {
 						
-						$($(this).attr('href')).show(); // Determined by anchor IDs.
+						$($(this).attr('href')).css('display', ''); // Smack!
 						
-					}); // Done!
+					});
+					
+					//----------------------------------
+					// External single clicks?
+					//----------------------------------
+					
+					if (data.settings.classSingle.length) {
+						
+						//----------------------------------
+						// Remove handler:
+						//----------------------------------
+						
+						$('.' + data.settings.classSingle).off('click.' + NS); // Bah-zing!
+						
+					}
 					
 				}
 				
@@ -338,10 +353,40 @@
 			$panel.show();
 			
 			//----------------------------------
+			// External single clicks?
+			//----------------------------------
+			
+			if (data.settings.classSingle.length) {
+				
+				//----------------------------------
+				// Click handler for class:
+				//----------------------------------
+				
+				$('.' + data.settings.classSingle).on('click.' + NS, function($e) {
+					
+					//----------------------------------
+					// Prevent anchor's default action:
+					//----------------------------------
+					
+					$e.preventDefault();
+					
+					//----------------------------------
+					// Trigger head click:
+					//----------------------------------
+					
+					$links
+						.filter('[href="' + $(this).attr('href') + '"]') // Use anchor value.
+						.trigger('click.' + NS);                         // Boom goes the dynamite!
+					
+				});
+				
+			}
+			
+			//----------------------------------
 			// Tabs "click" event handler:
 			//----------------------------------
 			
-			$(this).on('click.' + NS, 'a', function(e) {
+			$links.on('click.' + NS, function($e) {
 				
 				//----------------------------------
 				// Hoist variables:
@@ -353,7 +398,7 @@
 				// Prevent anchor's default action:
 				//----------------------------------
 				
-				e.preventDefault();
+				$e.preventDefault();
 				
 				//----------------------------------
 				// Already "active"?

@@ -102,7 +102,7 @@
 		
 		/*-----------------( UTILITY )-----------------*/
 		
-		.js .off { display: none; }
+		.js .panel { display: none; }
 		
 	</style>
 	
@@ -111,13 +111,13 @@
 </head>
 <body>
 	
-	<h1><a href="https://github.com/mhulse/nutshell">Nutshell</a> demo</h1>
+	<h1><a href="https://github.com/mhulse/jquery-nutshell/">Nutshell</a> demo</h1>
 	
 	<hr>
 	
 	<section>
 		
-		<h1>FOO, BAR &amp; BAZ</h1>
+		<h1><a class="nutshell-single" href="#foo">FOO</a>, <a class="nutshell-single" href="#bar">BAR</a> &amp; <a class="nutshell-single" href="#baz">BAZ</a>!</h1>
 		
 		<nav>
 			
@@ -129,7 +129,7 @@
 			
 		</nav>
 		
-		<section id="foo" class="panel off">
+		<section id="foo" class="panel">
 			
 			<h1>FOO</h1>
 			
@@ -137,7 +137,7 @@
 			
 		</section>
 		
-		<section id="bar" class="panel off">
+		<section id="bar" class="panel">
 			
 			<h1>BAR</h1>
 			
@@ -155,7 +155,7 @@
 			
 			<section>
 				
-				<h1>EEK, MOOF &amp; GLEEP</h1>
+				<h1><a class="nutshell-single" href="#eek">EEK</a>, <a class="nutshell-single" href="#moof">MOOF</a> &amp; <a class="nutshell-single" href="#gleep">GLEEP</a>!</h1>
 				
 				<ul class="nutshell">
 					<li><a href="#eek">EEK</a></li>
@@ -211,6 +211,7 @@
 			$('.nutshell').nutshell({
 				
 				classSelected : 'nutshell-selected',
+				classSingle   : 'nutshell-single',
 				animIn        : { opacity: 'show' },
 				animOut       : { opacity: 'hide' },
 				easeIn        : 'swing',

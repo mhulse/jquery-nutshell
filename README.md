@@ -6,6 +6,12 @@
 
 ---
 
+## Demo
+
+[![qr code](http://chart.apis.google.com/chart?cht=qr&chl=https://github.com/mhulse/jquery-nutshell/&chs=240x240)](http://mhulse.github.com/jquery-nutshell/demo/)
+
+**Source:** [jquery.nutshell.js](https://raw.github.com/mhulse/jquery-nutshell/gh-pages/nutshell/jquery.nutshell.js) | [jquery.nutshell.min.js](https://raw.github.com/mhulse/jquery-nutshell/gh-pages/nutshell/jquery.nutshell.min.js)
+
 ## Installation
 
 There are several ways to install this code:
@@ -18,7 +24,7 @@ There are several ways to install this code:
 
 ## Usage
 
-Setting up Nutshell is simple.
+Setting up Nutshell is simple ...
 
 ### Markup:
 
@@ -82,6 +88,7 @@ Here's an example with all the options:
 		$('.nutshell').nutshell({
 			
 			classSelected : 'nutshell-selected',
+			classSingle   : 'nutshell-single',
 			animIn        : { opacity: 'show' },
 			animOut       : { opacity: 'hide' },
 			easeIn        : 'swing',
@@ -109,6 +116,7 @@ Here's an example with all the options:
 Option | Description | Default
 :-- | :-- | :--
 `classSelected` | Selected tab CSS class. | `nutshell-selected`
+`classSingle | Have "external" link(s) open a single tab based on its hash? | `''`
 `animIn` |  What animation object to use to show the panels. | `{ opacity: 'show' }`
 `animOut` | IBID, but for hiding. | `{ opacity: 'hide' }`
 `easeIn` | Easing function in. | `'swing'`
@@ -122,11 +130,55 @@ Option | Description | Default
 `onBeforeHide` | Before hide animation begins. | `$.noop`
 `onHide` | After hide animation ends. | `$.noop`
 
-## Demo
+### Advanced:
 
-[![qr code](http://chart.apis.google.com/chart?cht=qr&chl=https://github.com/mhulse/jquery-nutshell/&chs=240x240)](http://mhulse.github.com/jquery-nutshell/demo/)
+1. All options can be overidden via an [HTML5 data attribute](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes) named `data-ion-options`; the value of this attribute **must** be valid [JSON](http://json.org/) syntax.
 
-**Source:** [jquery.nutshell.js](https://raw.github.com/mhulse/jquery-nutshell/gh-pages/nutshell/jquery.nutshell.js) | [jquery.nutshell.min.js](https://raw.github.com/mhulse/jquery-nutshell/gh-pages/nutshell/jquery.nutshell.min.js)
+ For example:
+
+ ```html
+ <ul class="nutshell" data-nutshell-options='{ "classSelected" : "foo" }'>
+ 	...
+ </ul>
+ ```
+
+ **Note** the nesting order of the single (`'`) and double (`"`) quotes.
+
+1. The tabs can be triggered via external clicks (e.g., page navigation).
+
+ To enable this featue, set a class name for the `classSingle` option:
+
+ ```js
+ classSingle : 'nutshell-single',
+ ```
+
+ ... and add the `classSingle` class to any link; the `href` value should target the desired tab panel ID:
+
+ ```html
+ <a class="nutshell-single" href="#foo">FOO</a>
+ ```
+
+1. The accordion can be triggered via external clicks (e.g., page navigation).
+
+1. Accordion panels can be opened via URI hash, like so:
+
+ [http://mhulse.github.io/jquery-nutshell/demo/#bar](http://mhulse.github.io/jquery-nutshell/demo/#bar)
+
+## Contributing
+
+Please read the [CONTRIBUTING.md](https://github.com/mhulse/jquery-nutshell/blob/gh-pages/CONTRIBUTING.md).
+
+## Feedback
+
+[Bugs? Constructive feedback? Questions?](https://github.com/mhulse/jquery-nutshell/issues/new?title=Your%20code%20sucks!&body=Here%27s%20why%3A%20)
+
+## Changelog
+
+* [v1.0.0 milestones](https://github.com/mhulse/jquery-nutshell/issues?direction=desc&milestone=1&page=1&sort=updated&state=open)
+
+## [Release history](https://github.com/mhulse/jquery-nutshell/releases)
+
+* 2013-12-26   [v1.0.0](https://github.com/mhulse/jquery-nutshell/releases/tag/v1.0.0)   Go time!
 
 ---
 
