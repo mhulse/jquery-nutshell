@@ -5,10 +5,10 @@
  * @author Micky Hulse
  * @link http://mky.io
  * @docs https://github.com/mhulse/jquery-nutshell
- * @copyright Copyright (c) 2013 Micky Hulse.
+ * @copyright Copyright (c) 2014 Micky Hulse.
  * @license Released under the Apache License, Version 2.0.
  * @version 1.0.0
- * @date 2013/12/26
+ * @date 2014/01/06
  */
 
 //----------------------------------
@@ -129,7 +129,7 @@
 					// Initialize:
 					//----------------------------------
 					
-					settings  = $.extend({}, defaults, options); // Merge defaults and options.
+					settings = $.extend({}, defaults, options); // Merge defaults and options.
 					
 					//----------------------------------
 					// Namespaced instance data:

@@ -116,7 +116,7 @@
 					// Initialize:
 					//----------------------------------
 					
-					settings  = $.extend({}, defaults, options); // Merge defaults and options.
+					settings = $.extend({}, defaults, options); // Merge defaults and options.
 					
 					//----------------------------------
 					// Namespaced instance data:
