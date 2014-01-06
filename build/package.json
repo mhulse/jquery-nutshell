@@ -2,7 +2,7 @@
   "title": "Nutshell",
   "name": "nutshell",
   "description": "In a nutshell, simple jQuery-powered tabs.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://github.com/mhulse/jquery-nutshell",
   "repository": {
     "type": "git",

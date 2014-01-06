@@ -116,7 +116,7 @@ Here's an example with all the options:
 Option | Description | Default
 :-- | :-- | :--
 `classSelected` | Selected tab CSS class. | `nutshell-selected`
-`classSingle | Have "external" link(s) open a single tab based on its hash? | `''`
+`classSingle` | Have "external" link(s) open a single tab based on its hash? | `''`
 `animIn` |  What animation object to use to show the panels. | `{ opacity: 'show' }`
 `animOut` | IBID, but for hiding. | `{ opacity: 'hide' }`
 `easeIn` | Easing function in. | `'swing'`
@@ -158,8 +158,6 @@ Option | Description | Default
  <a class="nutshell-single" href="#foo">FOO</a>
  ```
 
-1. The accordion can be triggered via external clicks (e.g., page navigation).
-
 1. Accordion panels can be opened via URI hash, like so:
 
  [http://mhulse.github.io/jquery-nutshell/demo/#bar](http://mhulse.github.io/jquery-nutshell/demo/#bar)
@@ -174,10 +172,12 @@ Please read the [CONTRIBUTING.md](https://github.com/mhulse/jquery-nutshell/blob
 
 ## Changelog
 
+* [v1.1.0 milestones](https://github.com/mhulse/jquery-nutshell/issues?direction=desc&milestone=2&page=1&sort=updated&state=open)
 * [v1.0.0 milestones](https://github.com/mhulse/jquery-nutshell/issues?direction=desc&milestone=1&page=1&sort=updated&state=open)
 
 ## [Release history](https://github.com/mhulse/jquery-nutshell/releases)
 
+* 2013-12-26   [v1.1.0](https://github.com/mhulse/jquery-nutshell/releases/tag/v1.0.0)   Bump!
 * 2013-12-26   [v1.0.0](https://github.com/mhulse/jquery-nutshell/releases/tag/v1.0.0)   Go time!
 
 ---
